@@ -79,11 +79,11 @@ public function count(...$arg){
                     $tmp = sprintf("`%s`='%s'",$key,$value);
                 }
             }
-            $sql = "update $this->table set" . $tmp ." where `id` ='" . $arg['id'] . "'" ;
+            $sql = "update `$this->table` set " .implode(",",$tmp) ." where `id` ='" . $arg['id'] . "'" ;
         }else{
             //insert
             // insert into  $this->table (``,``,``) values('','','')
-            $sql = "insert into  `$this->table` (`" . implode("`,`",array_keys($arg)).  "`) values ('" . implode("','",$arg) ."')";
+            $sql = "insert into  `$this->table` (`" . implode("`,`",array_keys($arg))."`) values ('" . implode("','",$arg) ."')";
         }
         return $this->pdo->exec($sql);
     }
