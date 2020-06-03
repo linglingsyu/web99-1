@@ -74,10 +74,29 @@ public function count(...$arg){
 
 // 新增/更新資料
 
+    public function save($arg){
+        if(!empty($arg['id'])){
+            //update
+            // update $this->table set xxx=yyy where `id`='xxx'
+            foreach ($arg as $key => $value){
+                if($key != 'id'){
+                    $tmp = sprintf("`%s`='%s'",$key,$value);
+                }
+            }
+            $sql = "update $this->table set" . $tmp ." where `id` ='" . $arg['id'] . "'" ;
+        }else{
+            //insert
+            // insert into  $this->table (``,``,``) values('','','')
+            $sql = "insert into  $this->table (`" . implode("`,`",array_keys($arg)).  "`) values ('" . implode("','",$arg) ."')";
+
+        }
+        return $this->pdo->exec($sql);
+    }
+
 // 刪除資料
 
 public function del($arg){
-    $sql = "delect from $this->table ";
+    $sql = "delete from `$this->table` ";
     if(is_array($arg)){
         foreach($arg as $key => $value){
             $tmp[] = sprintf("`%s`='%s'",$key,$value);
