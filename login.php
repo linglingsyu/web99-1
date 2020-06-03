@@ -7,7 +7,7 @@
 
 	<title>卓越科技大學校園資訊系統</title>
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
-	<script src="./home_files/jquery-3.4.1.min.js"></script>
+	<script src="./js/jquery-3.4.1.min.js"></script>
 	<script src="./js/js.js"></script>
 </head>
 
