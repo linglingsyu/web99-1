@@ -48,7 +48,7 @@ public function find($arg){
     }else{
         $sql = $sql. " where `id`=" . "'" . $arg . "'";
     }
-    return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 }
 
@@ -69,17 +69,16 @@ public function count(...$arg){
 }
 
 // 新增/更新資料
-
     public function save($arg){
         if(!empty($arg['id'])){
             //update
             // update $this->table set xxx=yyy where `id`='xxx'
             foreach ($arg as $key => $value){
                 if($key != 'id'){
-                    $tmp = sprintf("`%s`='%s'",$key,$value);
+                    $tmp[] = sprintf("`%s`='%s'",$key,$value);
                 }
             }
-            $sql = "update `$this->table` set " .implode(",",$tmp) ." where `id` ='" . $arg['id'] . "'" ;
+            $sql = "update `$this->table` set " . implode(",",$tmp) ." where `id` ='" . $arg['id'] . "'" ;
         }else{
             //insert
             // insert into  $this->table (``,``,``) values('','','')
