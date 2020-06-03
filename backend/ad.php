@@ -34,7 +34,7 @@
             <tbody>
                 <tr>
                 <!-- &#39;單引號 -->
-                    <td width="200px"><input type="button" onclick="op(&#39; #cover &#39; , &#39;#cvr&#39;,&#39;modal/title.php&#39;)" value="新增網站標題圖片"></td>
+                    <td width="200px"><input type="button" onclick="op(&#39; #cover &#39; , &#39;#cvr&#39;,&#39;modal/ad.php&#39;)" value="新增網站標題圖片"></td>
                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
                 </tr>
             </tbody>

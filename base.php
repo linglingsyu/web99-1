@@ -83,8 +83,7 @@ public function count(...$arg){
         }else{
             //insert
             // insert into  $this->table (``,``,``) values('','','')
-            $sql = "insert into  $this->table (`" . implode("`,`",array_keys($arg)).  "`) values ('" . implode("','",$arg) ."')";
-
+            $sql = "insert into  `$this->table` (`" . implode("`,`",array_keys($arg)).  "`) values ('" . implode("','",$arg) ."')";
         }
         return $this->pdo->exec($sql);
     }
