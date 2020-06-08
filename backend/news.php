@@ -10,13 +10,14 @@
                     <td width="7%">刪除</td>
                 </tr>
 <?php
-    $news = new DB('news'); // 資料表
-    $rows = $news-> all();
+    $table = $do;
+    $db = new DB($table); // 資料表
+    $rows = $db-> all();
     foreach ( $rows as $row){
         $is_check=($row['sh'])?"checked":'';
 ?>
     <tr>
-        <td width="68%"><textarea name="text[]" cols="30" rows="10" value="<?= $row['text']; ?>" ></textarea></td>
+        <td width="68%"><textarea style="width:90%;height:100px;" name="text[]" ><?= $row['text']; ?></textarea></td>
         <td width="7%"><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $is_check ?>></td>
         <td width="7%"><input type="checkbox" name="del[]" value="<?= $row['id']; ?>" ></td>
         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
@@ -30,8 +31,8 @@
             <tbody>
                 <tr>
                 <!-- &#39;單引號 -->
-                    <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/news.php&#39;)" value="新增最新消息資料">
-                    <input type="hidden" name="table" value="news">
+                    <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/news.php?table=<?=$table;?>&#39;)" value="新增最新消息資料">
+                    <input type="hidden" name="table" value=<?= $table; ?>>
                 </td>
                     <td class="cent">
                         <input type="submit" value="修改確定"><input type="reset" value="重置"></td>

@@ -11,8 +11,9 @@
                     <td></td>
                 </tr>
 <?php
-    $mvim = new DB('mvim'); // 資料表
-    $rows = $mvim-> all();
+    $table = $do;
+    $db = new DB($table); // 資料表
+    $rows = $db-> all();
     foreach ( $rows as $row){
         $is_check=($row['sh'])?"checked":'';
 ?>
@@ -20,7 +21,7 @@
         <td width="68%"><img src="img/<?= $row['img']; ?>" style="width:100px;height:75px;"></td>
         <td width="7%"><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $is_check ?>></td>
         <td width="7%"><input type="checkbox" name="del[]" value="<?= $row['id']; ?>" ></td>
-        <td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/upload_mvim.php?id=<?= $row['id']; ?>&#39;)" value="更新動畫"></td>
+        <td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/upload_mvim.php?id=<?= $row['id']; ?>&table=<?= $table ?>&#39;)" value="更新動畫"></td>
         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
     </tr>
 <?php
@@ -32,8 +33,8 @@
             <tbody>
                 <tr>
                 <!-- &#39;單引號 -->
-                    <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/mvim.php&#39;)" value="新增動畫圖片">
-                    <input type="hidden" name="table" value="mvim">
+                    <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/mvim.php?table=<?= $table ?>&#39;)" value="新增動畫圖片">
+                    <input type="hidden" name="table" value=<?= $table ?>>
                 </td>
                     
                     <td class="cent">

@@ -11,8 +11,9 @@
                     <td></td>
                 </tr>
 <?php
-    $image = new DB('image'); // 資料表
-    $rows = $image-> all();
+    $table = $do;
+    $db = new DB($table); // 資料表
+    $rows = $db-> all();
     foreach ( $rows as $row){
         $is_check=($row['sh'])?"checked":'';
 ?>
@@ -20,7 +21,7 @@
         <td width="68%"><img src="img/<?= $row['img']; ?>" style="width:100px;height:68px;"></td>
         <td width="7%"><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $is_check ?>></td>
         <td width="7%"><input type="checkbox" name="del[]" value="<?= $row['id']; ?>" ></td>
-        <td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/upload_image.php?id=<?= $row['id']; ?>&#39;)" value="更換圖片"></td>
+        <td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/upload_image.php?id=<?= $row['id']; ?>&table=<?= $table ?>&#39;)" value="更換圖片"></td>
         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
     </tr>
 <?php
@@ -34,7 +35,7 @@
                 <!-- &#39;單引號 -->
                     <td width="200px">
                         <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/image.php&#39;)" value="新增校園映像圖片">
-                        <input type="hidden" name="table" value="image">
+                        <input type="hidden" name="table" value=<?= $table ?>>
                     </td>
 
                     <td class="cent">

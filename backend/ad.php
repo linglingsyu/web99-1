@@ -10,8 +10,9 @@
                     <td width="7%">刪除</td>
                 </tr>
 <?php
-    $ad = new DB('ad'); // 資料表
-    $rows = $ad-> all();
+    $table = $do;
+    $db = new DB($table); // 資料表
+    $rows = $db-> all();
     foreach ( $rows as $row){
         $is_check=($row['sh'])?"checked":'';
 ?>
@@ -31,8 +32,8 @@
                 <tr>
                 <!-- &#39;單引號 -->
                 <td width="200px">
-                    <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/ad.php&#39;)" value="新增動態廣告文字">
-                    <input type="hidden" name="table" value="ad">
+                    <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/ad.php?table=<?= $table; ?>&#39;)" value="新增動態廣告文字">
+                    <input type="hidden" name="table" value=<?= $table ?>>
                 </td>
 
                 <td class="cent">

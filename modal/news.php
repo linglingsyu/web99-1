@@ -6,11 +6,12 @@
     <table style="width:80%; margin:0 auto;">
         <tr>
             <td style="text-align:right">最新消息資料：</td>
-            <td><textarea name="text[]"  style="width:300px;height:100px;"></textarea></td>
+            <td><textarea name="text"  style="width:300px;height:100px;"></textarea></td>
         </tr>
     </table>
     <div style="width:100px;margin:0 auto;">
-    <input type="hidden" name="table" value="news">
-    <input type="submit" value="新增"><input type="reset" value="重置"></div>
+        <input type="hidden" name="table" value=<?= $_GET['table'];  ?>>
+        <input type="submit" value="新增"><input type="reset" value="重置">
+    </div>
 </form>
 
