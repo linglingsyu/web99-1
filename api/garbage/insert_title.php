@@ -1,7 +1,8 @@
 <?php
 include_once "../base.php";
 
-$title = new DB('title');
+$table = $_POST["table"];
+$db = new DB($table);
 
 //判斷檔案有無上傳成功->取得上傳檔名-搬檔案
 if(!empty($_FILES['img']['tmp_name'])){
@@ -12,7 +13,7 @@ if(!empty($_FILES['img']['tmp_name'])){
 
 $text = $_POST['text'];
 $sh = 0;
-$title->save(['text'=>$text,'img'=>$filename,'sh'=>$sh]);
-to("../admin.php?do=title");
+$db->save(['text'=>$text,'img'=>$filename,'sh'=>$sh]);
+to("../admin.php?do=$table");
 //表單寫在view.php->透過ajax(load)->到admin.php->按下submit傳到insert_title.php做save->回admin(顯示title.php)
 ?>

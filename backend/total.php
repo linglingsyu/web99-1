@@ -21,7 +21,7 @@
             <tbody>
                 <tr>
                 <!-- &#39;單引號 -->
-                    <td width="200px"></td> 
+                    <td width="200px"><input type="hidden" name="table" value="total"></td> 
                     <!-- 留下此欄確保另一個td位置不會跑掉 -->
                     <td class="cent"><input type="submit" value="修改確定">
                     <input type="reset" value="重置"></td>

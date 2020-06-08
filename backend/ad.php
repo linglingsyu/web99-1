@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">動態文字廣告管理</p>
-    <form method="post" action="api/edit_ad.php">
+    <form method="post" action="api/edit.php">
     <!-- 因為這個檔案是被admin.php include的 所以位置要從admin的角度去寫 -->
         <table width="100%">
             <tbody>
@@ -30,8 +30,14 @@
             <tbody>
                 <tr>
                 <!-- &#39;單引號 -->
-                    <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/ad.php&#39;)" value="新增動態廣告文字"></td>
-                    <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
+                <td width="200px">
+                    <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/ad.php&#39;)" value="新增動態廣告文字">
+                    <input type="hidden" name="table" value="ad">
+                </td>
+
+                <td class="cent">
+                        <input type="submit" value="修改確定">
+                        <input type="reset" value="重置"></td>
                 </tr>
             </tbody>
         </table>
