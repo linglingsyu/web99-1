@@ -12,9 +12,6 @@ foreach($_POST["id"] as $key => $id){
         $title ->del($id);
     }else{
         $row = $title ->find($id);
-        echo "<pre>";
-        print_r($row);
-        echo "</pre>";
         $row["text"]=$_POST['text'][$key];
         // 如果id = $_POST["sh"]的值,才是要顯示
         $row["sh"] = ($_POST["sh"] == $id ) ? 1 : 0;

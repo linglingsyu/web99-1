@@ -1,8 +1,7 @@
-<h3 class="cent">新增動態文字廣告</h3>
+<h3 class="cent">新增動態廣告文字</h3>
 <hr>
-<form action="api/insert_title.php" method="post" enctype="multipart/form-data">
+<form action="api/insert_ad.php" method="post" enctype="multipart/form-data">
     <table style="width:80%; margin:0 auto;">
-
         <tr>
             <td style="text-align:right">標題區替代文字：</td>
             <td><input type="text" name="text"></td>
