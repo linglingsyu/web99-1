@@ -2,6 +2,7 @@
     <marquee scrolldelay="120" direction="left" style="position:absolute; width:100%; height:40px;">
     </marquee>
     <div style="height:32px; display:block;"></div>
+    <?php include "marquee.php" ?>
     <!--正中央-->
     <form method="post" action="?do=check" target="back">
         <p class="t botli">管理員登入區</p>

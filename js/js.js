@@ -1,11 +1,14 @@
 // JavaScript Document
 $(document).ready(function(e) {
+	//滑鼠移入
     $(".mainmu").mouseover(
 		function()
 		{
-			$(this).children(".mw").stop().show()
+			$(this).children(".mw").show()
 		}
+		//原來的	$(this).children(".mw").stop().show() => .stop()是5年前的東西,現在已經沒有用,所以刪掉
 	)
+	//滑鼠移開
 	$(".mainmu").mouseout(
 		function ()
 		{

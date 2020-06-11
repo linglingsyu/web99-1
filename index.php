@@ -33,6 +33,27 @@
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
                     <span class="t botli">主選單區</span>
+                    <?php
+
+                    $menu = new DB("menu");
+                    $mains = $menu->all(['parent'=>0,'sh'=>1]);
+                    foreach($mains as $main){
+                        echo '<div class="mainmu">'. '<a href="' . $main['href'] . '">' . $main['name'] .'</a>';
+                            //parent 有資料等於有次選單，
+                            $chksub = $menu->count(['parent' => $main['id']]);
+                            if($chksub > 0){
+                                $subs = $menu->all(['parent' => $main['id']]); //次選單的資料
+                                echo '<div class="mw">';
+                                foreach ($subs as $sub){
+                                    echo '<div class="mainmu2"><a href="' . $sub['href'] .'"></a>'. $sub['name'] . '</div>';
+                                }
+                                echo '</div>';                                   
+                           
+                            }                   
+                            echo '</div>';
+                    }
+
+                    ?>
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
@@ -74,19 +95,48 @@
                 <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button>
                 <div style="width:89%; height:480px;" class="dbor">
                     <span class="t botli">校園映象區</span>
+                    <div style="text-align:center;margin:10px;" onclick="pp(1)"><img src="icon/up.jpg"></div>
+                    <?php
+
+                    $image = new DB("image");
+                    $ims =$image->all(['sh'=>1]);
+                    foreach($ims as $key => $im){
+                        echo "<div style='text-align:center;margin:3px' id='ssaa$key' class='im'>";
+                        echo '<img src="img/'. $im['img'].'" style="width:150px;height:103px;border:1px solid orange">';
+                        echo "</div>";
+                    }
+                    ?>
+
+
+                    <div style="text-align:center;margin:10px;" onclick="pp(2)"><img src="icon/dn.jpg"></div>
                     <script>
+                        //現在的頁數
                         var nowpage = 0,
-                            num = 0;
+                        //圖片的數量
+                            num = <?= $image->count(['sh'=>1]);?>;
 
                         function pp(x) {
                             var s, t;
+                            //現在的頁面-1 >=0 => 現在的頁面-1
+                            /*
+
+                            顯示圖片 (一次三張) 圖片有7張
+                            所以顯示圖片有以下組合
+                            0 1 2
+                            1 2 3
+                            2 3 4 
+                            3 4 5
+                            4 5 6 
+                            */
                             if (x == 1 && nowpage - 1 >= 0) {
                                 nowpage--;
                             }
-                            if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                            if (x == 2 && nowpage + 1 <= num - 3) {
                                 nowpage++;
                             }
+                            //把所有class="im"的都先隱藏起來
                             $(".im").hide()
+                            //再把要顯示的圖片show出來
                             for (s = 0; s <= 2; s++) {
                                 t = s * 1 + nowpage * 1;
                                 $("#ssaa" + t).show()

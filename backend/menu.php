@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">主選單管理</p>
-    <form method="post" action="api/edit.php">
+    <form method="post" action="api/edit_submenu.php">
     <!-- 因為這個檔案是被admin.php include的 所以位置要從admin的角度去寫 -->
         <table width="100%">
             <tbody>
