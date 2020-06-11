@@ -1,28 +1,31 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-    <p class="t cent botli">選單管理</p>
-    <form method="post" action="api/edit_title.php">
+    <p class="t cent botli">主選單管理</p>
+    <form method="post" action="api/edit.php">
     <!-- 因為這個檔案是被admin.php include的 所以位置要從admin的角度去寫 -->
         <table width="100%">
             <tbody>
                 <tr class="yel">
-                    <td width="45%">網站標題</td>
-                    <td width="23%">替代文字</td>
-                    <td width="7%">顯示</td>
-                    <td width="7%">刪除</td>
-                    <td></td>
+                    <td width="30%">主選單名稱</td>
+                    <td width="30%">主選單連結網址</td>
+                    <td width="15%">次選單數</td>
+                    <td width="8%">顯示</td>
+                    <td width="8%">刪除</td>
+                    <td width="9%"></td>
                 </tr>
 <?php
-    $title = new DB('title'); // 資料表
-    $rows = $title-> all();
+    $table = $do;
+    $db = new DB($table); // 資料表
+    $rows = $db-> all(['parent'=>0]);
     foreach ( $rows as $row){
         $is_check=($row['sh'])?"checked":'';
 ?>
     <tr>
-        <td width="45%"><img src="img/<?= $row['img']; ?>" style="width:300px;height:30px;"></td>
-        <td width="23%"><input type="text" name="text[]" value="<?= $row['text']; ?>"></td>
-        <td width="7%"><input type="radio" name="sh" value="<?= $row['id']; ?>" <?= $is_check ?>></td>
-        <td width="7%"><input type="checkbox" name="del[]" value="<?= $row['id']; ?>" ></td>
-        <td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/upload_title.php?id=<?= $row['id']; ?>&#39;)" value="更新圖片"></td>
+        <td><input type="text" style="width:90%" name="name[]" value="<?= $row['name']; ?>"></td>
+        <td><input type="text" name="href[]" value="<?= $row['href']; ?>" ></td>
+        <td><?= $db->count(['parent'=>$row['id']])  ?></td>
+        <td><input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $is_check ?> ></td> 
+        <td><input type="checkbox" name="del[]" value="<?= $row['id']; ?>" ></td>  
+        <td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/submenu.php?id=<?= $row['id'];?>&table=<?= $table; ?>&#39;)" value="編輯次選單"></td>
         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
     </tr>
 <?php
@@ -34,8 +37,14 @@
             <tbody>
                 <tr>
                 <!-- &#39;單引號 -->
-                    <td width="200px"><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/title.php&#39;)" value="新增網站標題圖片"></td>
-                    <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
+                <td width="200px">
+                    <input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/menu.php?table=<?= $table; ?>&#39;)" value="新增主選單">
+                    <input type="hidden" name="table" value=<?= $table ?>>
+                </td>
+
+                <td class="cent">
+                        <input type="submit" value="修改確定">
+                        <input type="reset" value="重置"></td>
                 </tr>
             </tbody>
         </table>
