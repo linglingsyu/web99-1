@@ -84,7 +84,7 @@
                 <?php
                 }else{
                 ?>
-                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?admin.php&#39;)">返回管理</button>
+                <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;admin.php&#39;)">返回管理</button>
                 <?php
                 }
 
