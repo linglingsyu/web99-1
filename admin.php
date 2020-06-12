@@ -37,8 +37,7 @@ if(empty($_SESSION['login'])){
 	</div>
 	<div id="main">
 		<?php 
-			$title = new DB('title');
-			$ti = $title->find(['sh'=>1]);
+			$ti = $Title->find(['sh'=>1]);
 		
 		?>
 		<a title="<?= $ti['text'];  ?>" href="index.php">
@@ -92,8 +91,7 @@ if(empty($_SESSION['login'])){
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
 					<?php  
-						$total = new DB("total");
-						$tt = $total->find(1);
+						$tt = $Total->find(1);
 						echo $tt['total'];
 					?>
 					</span>
@@ -140,8 +138,7 @@ if(empty($_SESSION['login'])){
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
 			<span class="t" style="line-height:123px;">
 			<?php 
-				$db = new DB('bottom');
-				$ff = $db->find(1);
+				$ff = $Bottom->find(1);
 				echo $ff['bottom'];
 			?>
 			</span>

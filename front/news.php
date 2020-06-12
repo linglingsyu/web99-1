@@ -3,9 +3,10 @@
     </marquee>
     <div style="height:32px; display:block;">    <?php include "marquee.php" ?></div>
     <!--正中央-->
+    <div class="cent">更多最新消息</div>
+    <hr>
     <?php
-    $news = new DB('news');
-    $total = $news->count(['sh' => 1]); //撈出總筆數
+    $total = $News->count(['sh' => 1]); //撈出總筆數
     $num = 5; // 5筆一頁
     $pages = ceil($total / $num); //頁數
     $now = (!empty($_GET['p'])) ? $_GET['p'] : 1; //現在在哪一頁

@@ -31,6 +31,37 @@
 ?>
             </tbody>
         </table>
+
+
+        <?php
+$rows = $db-> all();
+$array =[
+    'width' =>'50%',
+    'header'=>[
+        ['網站標題','45%'],
+        ['替代文字','23%'],
+        ['顯示','7%'],
+        ['刪除','7%'],
+        ['操作',''],
+    ],
+  ];
+  foreach ( $rows as $row){
+   $array['rows'][]=
+   [
+    ["<img src='img/".$row['img']." style='width:300px;height:30px'>",
+    "<input type='text[]' name='text' value='AAAAAA' >",
+    "<input type='radio' name='sh' value='".$row['id']."'"." ".$is_check.">",
+    "<input type='checkbox' name='del[]' value='".$row['id']."' >",
+    'button']
+
+   ];
+}
+      $is_check=($row['sh'])?"checked":'';
+
+  $db->list($array);
+?>
+
+
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

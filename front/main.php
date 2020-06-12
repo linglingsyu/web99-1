@@ -12,8 +12,7 @@
         var lin = new Array();
 
     <?php
-            $mvim = new DB("mvim");
-            $mvs = $mvim->all(['sh'=> 1]);
+            $mvs = $Mvim->all(['sh'=> 1]);
             foreach ($mvs as $mv){     
     ?>
         lin.push('img/<?= $mv['img'] ?>');
@@ -41,8 +40,7 @@
     <div style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
         <span class="t botli">最新消息區
             <?php
-                $news = new DB('news');
-                $chk = $news->count(['sh'=>1]);
+                $chk = $News->count(['sh'=>1]);
                 if($chk > 5){
                     echo '<a href="index.php?do=news" style="float:right;">More...</a>';
 
