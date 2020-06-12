@@ -13,6 +13,13 @@
     $table = $do;
     $db = new DB($table); // 資料表
     $rows = $db-> all();
+    $total = $db->count(); //撈出總筆數
+    $num = 4; // 4筆一頁
+    $pages = ceil($total / $num); //頁數
+    $now = (!empty($_GET['p'])) ? $_GET['p'] : 1; //現在在哪一頁
+    $start = ($now - 1) * $num;
+    $ns = $db->all("", " limit $start,$num");
+
     foreach ( $rows as $row){
         $is_check=($row['sh'])?"checked":'';
 ?>
@@ -27,6 +34,32 @@
 ?>
             </tbody>
         </table>
+        <div style="text-align:center;">
+        <?php
+        if (($now - 1 > 0)) {
+        ?>
+            <a class="bl" style="font-size:30px;" href="?do=<?= $table?>&p=<?= $now-1 ?>">&lt;&nbsp;</a>
+        <?php
+        }
+        ?>
+
+        <?php
+
+        for ($i = 1; $i <= $pages; $i++) {
+            $fontsize= (($i==$now)? '30px':'24px;');
+        ?>
+            <a class="bl" style="font-size:<?= $fontsize; ?>;" href="?do=<?= $table?>&p=<?= $i ?>"><?= $i ?></a>
+        <?php
+        }
+        ?>
+        <?php
+        if($now + 1 > $pages){
+        ?>
+        <a class="bl" style="font-size:30px;" href="?do=<?= $table?>&p=<?= $now+1 ?>">&nbsp;&gt;</a>
+        <?php
+                }
+        ?>
+    </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

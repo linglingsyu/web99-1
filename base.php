@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 class DB{
 // 設定屬性
     private $dsn = "mysql:host=localhost;charset=utf8;dbname=db99";
